@@ -15,7 +15,8 @@
     "express-async-errors": "^3.1.1",
     "pdf-text-reader": "^4.0.1",
     "pg": "^8.11.3",
-    "reflect-metadata": "^0.2.1"
+    "reflect-metadata": "^0.2.1",
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
