@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
+import ErnegyBill from '@modules/ernegyBill/infra/typeorm/entities/ErnegyBill';
 
-import ErnegyBill from '@modules/ernegyBill/typeorm/entities/ErnegyBill';
 
 export const dataSource = new DataSource({
   type: 'postgres',
