@@ -1,3 +1,4 @@
+import { IErnegyBill } from '@modules/ernegyBill/domain/models/IErnegyBill';
 import {
   Column,
   CreateDateColumn,
@@ -7,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity('ernegy-bill')
-class ErnegyBill {
+class ErnegyBill implements IErnegyBill {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
