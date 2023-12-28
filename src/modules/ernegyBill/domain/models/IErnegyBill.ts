@@ -9,7 +9,7 @@ export interface IErnegyBill {
   sceeBill: number;
   compensedErnegy: number;
   compensedBill: number;
-  publicLightingContribuition: number;
+  publicLightingContribution: number;
   created_at: Date;
   updated_at: Date;
 }

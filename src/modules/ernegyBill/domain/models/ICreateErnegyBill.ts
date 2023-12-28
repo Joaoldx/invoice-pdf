@@ -8,5 +8,5 @@ export interface ICreateErnegyBill {
   sceeBill: number;
   compensedErnegy: number;
   compensedBill: number;
-  publicLightingContribuition: number;
+  publicLightingContribution: number;
 }

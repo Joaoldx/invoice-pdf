@@ -7,7 +7,7 @@ type SearchParams = {
   readingDate: Date;
 };
 
-export interface ICreateErnegyBillRepository {
+export interface IErnegyBillRepository {
   findAll(): Promise<IListErnegyBill>;
   findById(id: string): Promise<IErnegyBill | null>;
   create(data: ICreateErnegyBill): Promise<IErnegyBill>;

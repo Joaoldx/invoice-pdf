@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('ernegy-bill')
+@Entity('ernegyBill')
 class ErnegyBill implements IErnegyBill {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -40,7 +40,7 @@ class ErnegyBill implements IErnegyBill {
   compensedBill: number;
 
   @Column('decimal')
-  publicLightingContribuition: number;
+  publicLightingContribution: number;
 
   @CreateDateColumn()
   created_at: Date;
