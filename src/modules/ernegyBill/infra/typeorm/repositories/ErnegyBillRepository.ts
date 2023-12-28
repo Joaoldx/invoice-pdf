@@ -1,12 +1,12 @@
 import { Repository } from 'typeorm';
 import ErnegyBill from '../entities/ErnegyBill';
-import { ICreateErnegyBillRepository } from '@modules/ernegyBill/domain/repositories/IErnegyBillRepository';
+import { IErnegyBillRepository } from '@modules/ernegyBill/domain/repositories/IErnegyBillRepository';
 import { IErnegyBill } from '@modules/ernegyBill/domain/models/IErnegyBill';
 import { ICreateErnegyBill } from '@modules/ernegyBill/domain/models/ICreateErnegyBill';
 import { dataSource } from '@shared/infra/typeorm/dataSource';
 import { IListErnegyBill } from '@modules/ernegyBill/domain/models/IListErnegyBill';
 
-export class CreateErnegyBillRepository implements ICreateErnegyBillRepository {
+export class ErnegyBillRepository implements IErnegyBillRepository {
   private ormRepository: Repository<ErnegyBill>;
 
   constructor() {
@@ -36,8 +36,8 @@ export class CreateErnegyBillRepository implements ICreateErnegyBillRepository {
     sceeBill,
     compensedErnegy,
     compensedBill,
-    publicLightingContribuition,
-  }: ICreateErnegyBill): Promise<IErnegyBill> {
+    publicLightingContribution,
+  }: ICreateErnegyBill): Promise<ErnegyBill> {
     const ernegyBill = this.ormRepository.create({
       clientNumber,
       readingDate,
@@ -48,7 +48,7 @@ export class CreateErnegyBillRepository implements ICreateErnegyBillRepository {
       sceeBill,
       compensedErnegy,
       compensedBill,
-      publicLightingContribuition,
+      publicLightingContribution,
     });
 
     await this.ormRepository.save(ernegyBill);
@@ -72,9 +72,11 @@ export class CreateErnegyBillRepository implements ICreateErnegyBillRepository {
     readingDate: Date;
   }): Promise<IErnegyBill | null> {
     const ernegyBill = await this.ormRepository
-      .createQueryBuilder('ernegy-bill')
-      .where('ernegy-bill.clientNumber = :clientNumber', { clientNumber })
-      .andWhere('ernegy-bill.readingDate = :readingDate', { readingDate })
+      .createQueryBuilder()
+      .select('ernegyBill')
+      .from(ErnegyBill, 'ernegyBill')
+      .where('ernegyBill.clientNumber = :clientNumber', { clientNumber })
+      .andWhere('ernegyBill.readingDate = :readingDate', { readingDate })
       .getOne();
 
     return ernegyBill;
