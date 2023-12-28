@@ -1,11 +1,19 @@
 import { IErnegyBill } from '../models/IErnegyBill';
 import { ICreateErnegyBill } from '../models/ICreateErnegyBill';
-import { IShowErnegyBill } from '../models/IShowErnegyBill';
-import { IRemoveErnegyBill } from '../models/IRemoveErnegyBill';
+import { IListErnegyBill } from '../models/IListErnegyBill';
+
+type SearchParams = {
+  clientNumber: string;
+  readingDate: Date;
+};
 
 export interface ICreateErnegyBillRepository {
-  findAll(): Promise<IErnegyBill>;
+  findAll(): Promise<IListErnegyBill>;
+  findById(id: string): Promise<IErnegyBill | null>;
   create(data: ICreateErnegyBill): Promise<IErnegyBill>;
-  show(data: IShowErnegyBill): Promise<IErnegyBill>;
-  remove(data: IRemoveErnegyBill): Promise<IErnegyBill>;
+  remove(data: IErnegyBill): Promise<void>;
+  findByClientNumberAndDate({
+    clientNumber,
+    readingDate,
+  }: SearchParams): Promise<IErnegyBill | null>;
 }
