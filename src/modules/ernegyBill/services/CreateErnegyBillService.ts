@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { IErnegyBillRepository } from '../domain/repositories/IErnegyBillRepository';
 import { ICreateErnegyBill } from '../domain/models/ICreateErnegyBill';
+import AppError from '@shared/errors/AppError';
 
 @injectable()
 class CreateErnegyBillService {
@@ -20,7 +21,7 @@ class CreateErnegyBillService {
     compensedErnegy,
     compensedBill,
     publicLightingContribution,
-  }: ICreateErnegyBill) {
+  }: ICreateErnegyBill): Promise<ICreateErnegyBill> {
     const ernegyBillExists =
       await this.ernegyBillRepository.findByClientNumberAndDate({
         clientNumber,
@@ -28,7 +29,7 @@ class CreateErnegyBillService {
       });
 
     if (ernegyBillExists) {
-      return console.log('Conta de luz já existe');
+      throw new AppError('Conta de luz já existe');
     }
 
     const ernegyBill = await this.ernegyBillRepository.create({

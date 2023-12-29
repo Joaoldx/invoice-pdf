@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { IErnegyBillRepository } from '../domain/repositories/IErnegyBillRepository';
+import { IListErnegyBill } from '../domain/models/IListErnegyBill';
 
 @injectable()
 class ListErnegyBillService {
@@ -8,7 +9,7 @@ class ListErnegyBillService {
     private ernegyBillRepository: IErnegyBillRepository,
   ) {}
 
-  public async execute() {
+  public async execute(): Promise<IListErnegyBill> {
     return await this.ernegyBillRepository.findAll();
   }
 }
