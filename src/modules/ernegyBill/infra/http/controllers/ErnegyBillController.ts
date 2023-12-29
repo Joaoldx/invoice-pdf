@@ -1,5 +1,6 @@
 import CreateErnegyBillService from '@modules/ernegyBill/services/CreateErnegyBillService';
 import ListErnegyBillService from '@modules/ernegyBill/services/ListErnegyBillService';
+import ShowErnegyBillService from '@modules/ernegyBill/services/ShowErnegyBillService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -42,5 +43,14 @@ export default class ErnegyBillController {
     });
 
     return response.json(ernegybill);
+  }
+  public async show(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const showErnegyBill = container.resolve(ShowErnegyBillService);
+
+    const ernegyBill = await showErnegyBill.execute({ id });
+
+    return response.json(ernegyBill);
   }
 }

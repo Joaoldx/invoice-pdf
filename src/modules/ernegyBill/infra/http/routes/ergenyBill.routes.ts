@@ -25,5 +25,14 @@ ernegyBillRouter.post(
   }),
   ernegyBillController.create,
 );
+ernegyBillRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  ernegyBillController.show,
+);
 
 export default ernegyBillRouter;
