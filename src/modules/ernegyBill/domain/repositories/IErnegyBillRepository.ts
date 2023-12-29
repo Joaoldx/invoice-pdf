@@ -11,7 +11,7 @@ export interface IErnegyBillRepository {
   findAll(): Promise<IListErnegyBill>;
   findById(id: string): Promise<IErnegyBill | null>;
   create(data: ICreateErnegyBill): Promise<IErnegyBill>;
-  remove(data: IErnegyBill): Promise<void>;
+  remove(ernegyBill: IErnegyBill): Promise<void>;
   findByClientNumberAndDate({
     clientNumber,
     readingDate,
