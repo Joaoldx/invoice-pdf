@@ -1,4 +1,5 @@
 import CreateErnegyBillService from '@modules/ernegyBill/services/CreateErnegyBillService';
+import DeleteErnegyBillService from '@modules/ernegyBill/services/DeleteErnegyBillService';
 import ListErnegyBillService from '@modules/ernegyBill/services/ListErnegyBillService';
 import ShowErnegyBillService from '@modules/ernegyBill/services/ShowErnegyBillService';
 import { Request, Response } from 'express';
@@ -44,6 +45,7 @@ export default class ErnegyBillController {
 
     return response.json(ernegybill);
   }
+
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
@@ -52,5 +54,15 @@ export default class ErnegyBillController {
     const ernegyBill = await showErnegyBill.execute({ id });
 
     return response.json(ernegyBill);
+  }
+
+  public async remove(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const deleteErnegyBill = container.resolve(DeleteErnegyBillService);
+
+    await deleteErnegyBill.execute({ id });
+
+    return response.json([]);
   }
 }

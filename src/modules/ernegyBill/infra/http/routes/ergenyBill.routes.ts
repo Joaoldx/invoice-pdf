@@ -35,4 +35,14 @@ ernegyBillRouter.get(
   ernegyBillController.show,
 );
 
+ernegyBillRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  ernegyBillController.remove,
+);
+
 export default ernegyBillRouter;
