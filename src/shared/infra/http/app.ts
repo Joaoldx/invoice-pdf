@@ -4,7 +4,6 @@ import cors from 'cors';
 import { errors } from 'celebrate';
 import '@shared/container';
 import routes from './routes';
-import ReaderPdf from '@modules/pdf/ReaderPdf';
 import AppError from '@shared/errors/AppError';
 
 const app = express();
@@ -33,7 +32,5 @@ app.use(
     });
   },
 );
-
-ReaderPdf();
 
 export { app };
