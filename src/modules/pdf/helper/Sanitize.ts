@@ -5,10 +5,8 @@ export function sanitizeData(data: IData): ICreateErnegyBill {
   const sanitizedData = {
     clientNumber: data.clientNumber,
     readingDate: new Date(data.readingData.date),
-    readingBill: Number(data.eletricBillData.value.replace(',', '')),
-    eletricConsumed: Number(
-      data.eletricConsumedData.consumedKWh.replace('.', ''),
-    ),
+    readingBill: Number(data.eletricBillData.value.replace(',', '.')),
+    eletricConsumed: Number(data.eletricBillData.consumedKWh.replace('.', '')),
     eletricBill: Number(data.eletricConsumedData.value.replace(',', '.')),
     sceeConsumed: Number(data.sceeData.consumedKWh.replace('.', '')),
     sceeBill: Number(data.sceeData.value.replace(',', '.')),
