@@ -7,8 +7,7 @@ export default async function StorePdfService(files: IData[]) {
   for (const data of files) {
     const file = sanitizeData(data);
     await dataSource.manager.transaction(async transactionalEntityManager => {
-      const readingDate = new Date(data.readingData.date);
-      const clientNumber = data.clientNumber;
+      const { readingDate, clientNumber } = file;
 
       const billExists = await transactionalEntityManager
         .createQueryBuilder()
